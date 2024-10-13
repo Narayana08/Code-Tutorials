@@ -3,39 +3,40 @@ import java.util.Arrays;
 
 public class RotateArray {
 
+    // Helper function to reverse elements of the array
+    public static void reverse(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    // Function to rotate the array by k positions
+    public static void rotate(int[] arr, int k) {
+        int n = arr.length;
+        k = k % n;  // In case k is greater than array length
+
+        // Step 1: Reverse the whole array
+        reverse(arr, 0, n - 1);
+
+        // Step 2: Reverse the first k elements
+        reverse(arr, 0, k - 1);
+
+        // Step 3: Reverse the remaining elements
+        reverse(arr, k, n - 1);
+    }
+
     public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8};
+        int k = 4;
 
-        int[] input = {1, 2, 3, 4, 5, 6, 7, 8};
-        int k = 3;
-        System.out.println("Input Array " + Arrays.toString(input));
-        //result = {4,5,6,7,8,1,2,3}
-        int[] result = rotateArray(input, k);
-        System.out.println("Rotated Array " + Arrays.toString(result));
+        System.out.println("Original Array: " + Arrays.toString(arr));
 
+        rotate(arr, k);
+
+        System.out.println("Array after rotating by " + k + " positions: " + Arrays.toString(arr));
     }
-
-    private static int[] rotateArray(int[] input, int k) {
-        int n = input.length ;
-        int[] temp = new int[k];
-
-        // System.arraycopy(input, 0, temp, 0, k);
-        for (int index = 0; index < k; index++) {
-            temp[index] = input[index];
-        }
-
-        for (int index = k; index < n; index++) {
-            input[index - k] = input[index];
-        }
-
-        System.out.println("array" + Arrays.toString(input));
-
-        int j = 0;
-        for (int index = n - k; index < n; index++) {
-            input[index] = temp[j];
-            j++;
-        }
-
-        return input;
-    }
-
 }
