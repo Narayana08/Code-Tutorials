@@ -6,7 +6,7 @@ public class DigitSumRecursion {
         int result = digitSum(n);
         //int product = productDigits(n);
         //System.out.println("Sum of all the digits of a number " + n + " is " + result);
-        System.out.println("product of all digits of " + n + " is "  + result);
+        System.out.println("product of all digits of " + n + " is " + result);
     }
 
     private static int digitSum(int num) {
